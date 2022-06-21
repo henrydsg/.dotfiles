@@ -1,0 +1,10 @@
+[user]
+	name = Yihung Yu
+	email = henry840227@gmail.com
+[core]
+	editor = nvim
+	excludesFile = .gitignore
+[init]
+	defaultBranch = main
+[submodule]
+	recurse = true
