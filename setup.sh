@@ -15,7 +15,12 @@ if [[ "$(brew --version)" == *"command not found"* ]]; then
 fi
 
 # stow
-[ -z "$(brew ls --version stow;)" ] && brew install stow
+[[ "$(stow --version)" == *"command not found"* ]] && brew install stow
+if [[ "$(stow --version)" == *"command not found"* ]]; then
+  echo "stow is not installed successfully."
+  abort 1
+fi
+
 STOW_ERR_MSG="$(stow -d $SCRIPTPATH -t $HOME --restow . 2>&1;)";
 if [[ "$STOW_ERR_MSG" ==  *"conflicts:"* ]]; then
   echo "$STOW_ERR_MSG"
@@ -23,21 +28,22 @@ if [[ "$STOW_ERR_MSG" ==  *"conflicts:"* ]]; then
 fi
 
 # nvim
-[ -z "$(brew ls --version neovim;)" ] && \
+[[ "$(nvim --version;)" == *"command not found"* ]] && \
   brew install --HEAD neovim
-if [ -z "$(brew ls --version neovim;)" ]; then
+if [[ "$(nvim --version;)" == *"command not found"* ]]; then
   echo "neovim is not installed successfully"
   abort 1
 fi
 
 # hack-nerd-font (for nvim lsp functions)
-[ -z "$(brew ls --cask --version font-hack-nerd-font;)" ] && \
-  brew tap homebrew/cask-fonts && \ 
+if [ -z "$(ls $HOME/Library/Fonts | grep Nerd;)" ]; then
+  brew tap homebrew/cask-fonts 
   brew install --cask font-hack-nerd-font
+fi
 
 # oh-my-zsh
 [ ! -d ~/.oh-my-zsh ] &&  \
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --keep-zshrc
+  sh -c "$(curl -fssl https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --keep-zshrc
 if [ ! -d ~/.oh-my-zsh ]; then
   echo "oh-my-zsh is not installed."
   abort 1
@@ -45,8 +51,8 @@ fi
 
 # TODO: find a better way to manage these two plugins
 # fzf and ag needs to be installed before plugged by oh-my-zsh
-[ -z "$(brew ls --version fzf;)" ] && brew install fzf
-[ -z "$(brew ls --version the_silver_searcher;)" ] && brew install the_silver_searcher
+[[ "$(fzf --version)" == *"command not found"* ]] && brew install fzf
+[[ "$(ag --version)" == *"command not found"* ]] && brew install the_silver_searcher
 
 # iTerm2
 [ -z "$(brew ls --cask --version iterm2;)" ] && brew install iterm2
@@ -56,15 +62,15 @@ if [ -z "$(brew ls --cask --version iterm2;)" ]; then
 fi
 
 # git
-[ -z "$(brew ls --version git;)" ] && brew install git
-if [ -z "$(brew ls --version git;)" ]; then
+[[ "$(git --version)" == *"command not found "* ]] && brew install git
+if [[ "$(git --version)" == *"command not found "* ]]; then
   echo "git is not installed successfully."
   abort 1
 fi
 
 # tmux
-[ -z "$(brew ls --version tmux;)" ] && brew install tmux
-if [ -z "$(brew ls --version tmux;)" ]; then
+[[ "$(tmux -V)" == *"command not found" ]] && brew install tmux
+if [[ "$(tmux -V)" == *"command not found" ]]; then
   echo "tmux is not installed successfully."
   abort 1
 fi
