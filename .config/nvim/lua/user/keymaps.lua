@@ -43,6 +43,9 @@ keymap("i", "jk", "<Esc>", opts)
 keymap("v", "<S-j>", ":m .+1<CR>v", opts)
 keymap("v", "<S-k>", ":m .-2<CR>v", opts)
 
+-- replace all matches of selected string in current buffer
+keymap("v", "<C-r>", '"hy:%s/<C-r>h//g<Left><Left>', opts)
+
 -- Visual Block --
 -- Move text up and down
 keymap("x", "<S-j>", ":move '>+1<CR>gv=gv", opts)
@@ -51,3 +54,6 @@ keymap("x", "<S-k>",":move '<-2<CR>gv=gv", opts)
 -- Stay in indent mode
 keymap("x", "<", "<gv", opts)
 keymap("x", ">", ">gv", opts)
+
+-- use 0 register to overwrite selected block
+keymap("x", "<<Space>p>", '"_dP', opts)
