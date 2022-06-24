@@ -85,6 +85,16 @@ return packer.startup(function(use)
     config = "require 'user.nvim-treesitter'"
   })
 
+  -- fzf
+  use({
+    "junegunn/fzf.vim",
+    requires = {
+      "junegunn/fzf",
+      run = ":call fzf#install()",
+    },
+    config = "require 'user.fzf'"
+  })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

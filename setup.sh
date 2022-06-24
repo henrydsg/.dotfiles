@@ -49,10 +49,24 @@ if [ ! -d ~/.oh-my-zsh ]; then
   abort 1
 fi
 
-# TODO: find a better way to manage these two plugins
 # fzf and ag needs to be installed before plugged by oh-my-zsh
 [[ "$(fzf --version)" == *"command not found"* ]] && brew install fzf
+if [[ "$(fzf --version;)" == *"command not found"* ]]; then
+  echo "fzf is not installed successfully"
+  abort 1
+fi
+
 [[ "$(ag --version)" == *"command not found"* ]] && brew install the_silver_searcher
+if [[ "$(ag --version;)" == *"command not found"* ]]; then
+  echo "the_silver_searcher is not installed successfully"
+  abort 1
+fi
+
+[[ "$(bat --version)" == *"command not found"* ]] && brew install bat
+if [[ "$(bat --version;)" == *"command not found"* ]]; then
+  echo "bat is not installed successfully"
+  abort 1
+fi
 
 # iTerm2
 [ -z "$(brew ls --cask --version iterm2;)" ] && brew install iterm2
@@ -75,4 +89,4 @@ if [[ "$(tmux -V)" == *"command not found" ]]; then
   abort 1
 fi
 
-echo "Successfull."
+echo "Successfull. Please close current terminal and open a new iTerm2 to activate all configs."
