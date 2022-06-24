@@ -35,6 +35,9 @@ keymap("n", "<S-k>", "<Esc>:m .-2<CR>==", opts)
 -- Quick save
 keymap("n", "<C-s>", "<Esc>:w<CR>", opts)
 
+-- use 0 register to overwrite highlighted character
+keymap("n", "<Space>p", 'v"_dP', opts)
+
 -- Insert
 keymap("i", "jk", "<Esc>", opts)
 
@@ -56,4 +59,4 @@ keymap("x", "<", "<gv", opts)
 keymap("x", ">", ">gv", opts)
 
 -- use 0 register to overwrite selected block
-keymap("x", "<<Space>p>", '"_dP', opts)
+keymap("x", "<Space>p", '"_dP', opts)
