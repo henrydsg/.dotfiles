@@ -23,10 +23,10 @@ end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd [[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
+  augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
 ]]
 
 -- Have packer use a popup window
@@ -40,9 +40,8 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- Plug plugins here 
+  -- Plug plugins here
   use "wbthomason/packer.nvim"
-
 
   -- Auto-completion
 	use({
@@ -81,7 +80,7 @@ return packer.startup(function(use)
   -- tree-sitter
   use({
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate:",
+    run = ":TSUpdate",
     config = "require 'user.nvim-treesitter'"
   })
 
