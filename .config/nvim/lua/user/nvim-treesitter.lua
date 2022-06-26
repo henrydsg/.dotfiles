@@ -4,12 +4,16 @@ if not status_ok then
 end
 
 configs.setup({
-	ensure_installed = "all",
+  ensure_installed = "all",
   ignore_install = { "phpdoc" },  -- It seems a bug pop up installing phpdoc.
-	sync_install = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-	indent = { enable = true, disable = { "yaml" } },
+  sync_install = false,
+  indent = { enable = true, disable = { "yaml" } },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
 })
