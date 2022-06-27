@@ -47,4 +47,8 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-vim.cmd [[highlight ColorColumn guibg=Grey40]]
+vim.cmd [[
+  highlight ColorColumn guibg=Grey40
+  highlight! link Pmenu MyHighlight 
+  highlight! link FloatBorder MyHighlight 
+]]
