@@ -95,6 +95,7 @@ local function lsp_keymaps(bufnr)
   buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<Space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  buf_set_keymap("n", "<Space>s", "<cmd>lua vim.lsp.buf.formatting_sync()<CR><cmd>w<CR>", opts)
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
