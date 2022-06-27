@@ -1,11 +1,11 @@
 local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
-	return
+  return
 end
 
 configs.setup({
   ensure_installed = "all",
-  ignore_install = { "phpdoc" },  -- It seems a bug pop up installing phpdoc.
+  ignore_install = { "phpdoc" }, -- It seems that a bug pops up installing phpdoc.
   sync_install = false,
   indent = { enable = true, disable = { "yaml" } },
   highlight = {

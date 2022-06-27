@@ -44,11 +44,11 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- Auto-completion
-	use({
-		"hrsh7th/nvim-cmp",
-		config = "require 'user.cmp.nvim-cmp'",
+  use({
+    "hrsh7th/nvim-cmp",
+    config = "require 'user.cmp.nvim-cmp'",
     requires = { { "L3MON4D3/LuaSnip" } },
-	})
+  })
 
   use({
     "hrsh7th/cmp-buffer",
@@ -95,7 +95,7 @@ return packer.startup(function(use)
   })
 
   -- commentary
-  use ({
+  use({
     "JoosepAlviste/nvim-ts-context-commentstring"
   })
 

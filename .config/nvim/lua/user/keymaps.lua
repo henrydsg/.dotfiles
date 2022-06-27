@@ -55,7 +55,7 @@ keymap("v", "<Space>p", '"_dP', opts)
 -- Visual Block --
 -- Move text up and down
 keymap("x", "<S-j>", ":move '>+1<CR>gv=gv", opts)
-keymap("x", "<S-k>",":move '<-2<CR>gv=gv", opts)
+keymap("x", "<S-k>", ":move '<-2<CR>gv=gv", opts)
 
 -- Stay in indent mode
 keymap("x", "<", "<gv", opts)
