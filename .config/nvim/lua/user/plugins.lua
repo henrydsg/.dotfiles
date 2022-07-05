@@ -47,7 +47,15 @@ return packer.startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     config = "require 'user.cmp.nvim-cmp'",
-    requires = { { "L3MON4D3/LuaSnip" } },
+    requires = {
+      {
+        "L3MON4D3/LuaSnip",
+        requires = {
+          "rafamadriz/friendly-snippets",
+          "saadparwaiz1/cmp_luasnip"
+        },
+      }
+    },
   })
 
   use({
@@ -57,6 +65,11 @@ return packer.startup(function(use)
 
   use({
     "hrsh7th/cmp-path",
+    requires = "nvim-cmp"
+  })
+
+  use({
+    "hrsh7th/cmp-omni",
     requires = "nvim-cmp"
   })
 
