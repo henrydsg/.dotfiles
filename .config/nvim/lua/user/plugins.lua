@@ -88,8 +88,10 @@ return packer.startup(function(use)
   use({
     "junegunn/fzf.vim",
     requires = {
-      "junegunn/fzf",
-      run = ":call fzf#install()",
+      {
+        "junegunn/fzf",
+        run = ":call fzf#install()",
+      }
     },
     config = "require 'user.fzf'"
   })
