@@ -73,6 +73,12 @@ return packer.startup(function(use)
     requires = "nvim-cmp"
   })
 
+  use({
+    "windwp/nvim-autopairs",
+    requires = "nvim-cmp",
+    config = "require 'user.autopairs'",
+  })
+
   -- LSP
   use({
     "williamboman/nvim-lsp-installer",
