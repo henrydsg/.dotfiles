@@ -1,6 +1,6 @@
 vim.cmd([[
   try
-    colorscheme desert
+    colorscheme evening
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
   endtry
