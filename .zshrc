@@ -72,6 +72,7 @@ ZSH_THEME="eastwood"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    docker
     autojump
     zsh-completions
     zsh-autosuggestions
