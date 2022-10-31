@@ -39,7 +39,7 @@ keymap("n", "<C-s>", "<Esc>:w<CR>", opts)
 keymap("n", "<Space>p", 'v"_dP', opts)
 
 -- Insert
-keymap("i", "jk", "<Esc>", opts)
+-- keymap("i", "jk", "<Esc>", opts)
 
 -- Visual --
 -- Move text up and down
