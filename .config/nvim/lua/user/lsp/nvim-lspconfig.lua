@@ -49,8 +49,8 @@ M.setup = function()
 end
 
 local function lsp_highlight_document(client)
-  -- Set autocommands conditional on resolved_capabilities
-  if client.resolved_capabilities.document_highlight then
+  -- Set autocommands conditional on server_capabilities
+  if client.server_capabilities.document_highlight then
     vim.cmd(
       [[
         highlight LspReferenceRead guibg=Grey40
@@ -96,7 +96,7 @@ local function lsp_keymaps(bufnr)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<Space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   buf_set_keymap("n", "<Space>s", "<cmd>lua vim.lsp.buf.formatting_sync()<CR><cmd>w<CR>", opts)
-  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format{async = true}' ]])
 end
 
 M.on_attach = function(client, bufnr)
@@ -117,6 +117,6 @@ if not cmp_lsp_status_ok then
   return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

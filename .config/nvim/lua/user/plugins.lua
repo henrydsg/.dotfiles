@@ -99,6 +99,7 @@ return packer.startup(function(use)
   -- tree-sitter
   use({
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     run = ":TSUpdate",
     config = "require 'user.nvim-treesitter'"
   })
