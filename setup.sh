@@ -62,6 +62,12 @@ if [[ "$(ag --version;)" == *"command not found"* ]]; then
   abort 1
 fi
 
+[[ "$(rg --version)" == *"command not found"* ]] && brew install ripgrep
+if [[ "$(rg --version;)" == *"command not found"* ]]; then
+  echo "ripgrep is not installed successfully"
+  abort 1
+fi
+
 [[ "$(bat --version)" == *"command not found"* ]] && brew install bat
 if [[ "$(bat --version;)" == *"command not found"* ]]; then
   echo "bat is not installed successfully"
