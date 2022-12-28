@@ -14,18 +14,20 @@ if [[ "$SHELL" != "$(which zsh)" ]]; then
 fi
 
 # brew
-[[ "$(brew --version)" == *"command not found"* ]] && \
+if [[ "$(brew --version 2>&1)" == *"command not found"* ]]; then 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-if [[ "$(brew --version)" == *"command not found"* ]]; then
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ "$(brew --version 2>&1)" == *"command not found"* ]]; then
   echo "brew is not installed successfully."
   abort 1
 fi
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # stow
-[[ "$(stow --version)" == *"command not found"* ]] && brew install stow
-if [[ "$(stow --version)" == *"command not found"* ]]; then
+[[ "$(stow --version 2>&1)" = *"command not found"* ]] && brew install stow
+if [[ $string == *"command not found"* ]]; then
   echo "stow is not installed successfully."
   abort 1
 fi
@@ -37,7 +39,7 @@ if [[ "$STOW_ERR_MSG" ==  *"conflicts:"* ]]; then
 fi
 
 # nvim
-[[ "$(nvim --version;)" == *"command not found"* ]] && \
+[[ "$(nvim --version 2>&1;)" == *"command not found"* ]] && \
   brew install --HEAD neovim
 if [[ "$(nvim --version;)" == *"command not found"* ]]; then
   echo "neovim is not installed successfully"
@@ -59,25 +61,25 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 # fzf and ag needs to be installed before plugged by oh-my-zsh
-[[ "$(fzf --version)" == *"command not found"* ]] && brew install fzf
+[[ "$(fzf --version 2>&1)" == *"command not found"* ]] && brew install fzf
 if [[ "$(fzf --version;)" == *"command not found"* ]]; then
   echo "fzf is not installed successfully"
   abort 1
 fi
 
-[[ "$(ag --version)" == *"command not found"* ]] && brew install the_silver_searcher
+[[ "$(ag --version 2>&1)" == *"command not found"* ]] && brew install the_silver_searcher
 if [[ "$(ag --version;)" == *"command not found"* ]]; then
   echo "the_silver_searcher is not installed successfully"
   abort 1
 fi
 
-[[ "$(rg --version)" == *"command not found"* ]] && brew install ripgrep
+[[ "$(rg --version 2>&1)" == *"command not found"* ]] && brew install ripgrep
 if [[ "$(rg --version;)" == *"command not found"* ]]; then
   echo "ripgrep is not installed successfully"
   abort 1
 fi
 
-[[ "$(bat --version)" == *"command not found"* ]] && brew install bat
+[[ "$(bat --version 2>&1)" == *"command not found"* ]] && brew install bat
 if [[ "$(bat --version;)" == *"command not found"* ]]; then
   echo "bat is not installed successfully"
   abort 1
@@ -91,14 +93,14 @@ if [ -z "$(brew ls --cask --version iterm2;)" ]; then
 fi
 
 # git
-[[ "$(git --version)" == *"command not found "* ]] && brew install git
+[[ "$(git --version 2>&1)" == *"command not found "* ]] && brew install git
 if [[ "$(git --version)" == *"command not found "* ]]; then
   echo "git is not installed successfully."
   abort 1
 fi
 
 # tmux
-[[ "$(tmux -V)" == *"command not found" ]] && brew install tmux
+[[ "$(tmux -V 2>&1)" == *"command not found" ]] && brew install tmux
 if [[ "$(tmux -V)" == *"command not found" ]]; then
   echo "tmux is not installed successfully."
   abort 1
