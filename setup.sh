@@ -1,10 +1,17 @@
 #!/bin/zsh
-SCRIPTPATH="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}";)" &> /dev/null && pwd 2> /dev/null;)";
+SCRIPTPATH="$(cd -- "$(dirname -- "${ZSH_SOURCE[0]:-$0}";)" &> /dev/null && pwd 2> /dev/null;)";
 
 function abort () {
   echo "Dotfiles setup aborted."
   exit $1
 }
+
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+    echo "Please open a zsh shell to setup. Use\n"
+    echo "  chsh -s \$(which zsh)\n"
+    echo "to change default shell to zsh.\n"
+    abort 1
+fi
 
 # brew
 [[ "$(brew --version)" == *"command not found"* ]] && \
@@ -13,6 +20,8 @@ if [[ "$(brew --version)" == *"command not found"* ]]; then
   echo "brew is not installed successfully."
   abort 1
 fi
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # stow
 [[ "$(stow --version)" == *"command not found"* ]] && brew install stow
