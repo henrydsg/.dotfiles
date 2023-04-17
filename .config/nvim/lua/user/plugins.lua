@@ -80,13 +80,17 @@ return packer.startup(function(use)
   })
 
   -- LSP
-  use({
-    "williamboman/nvim-lsp-installer",
-    config = "require 'user.lsp.nvim-lsp-installer'",
+  use {
+    "williamboman/mason.nvim",
+    config = "require 'mason'.setup()",
     requires = {
       {
         "neovim/nvim-lspconfig",
         config = "require 'user.lsp.nvim-lspconfig'.setup()"
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        config = "require 'mason-lspconfig'.setup()"
       },
       {
         -- Augment auto-comletion with LSP
@@ -94,7 +98,8 @@ return packer.startup(function(use)
         requires = "hrsh7th/nvim-cmp"
       }
     },
-  })
+    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+  }
 
   -- tree-sitter
   use({
