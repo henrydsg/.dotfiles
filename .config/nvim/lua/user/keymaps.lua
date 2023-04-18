@@ -35,6 +35,10 @@ keymap("n", "<S-k>", "<Esc>:m .-2<CR>==", opts)
 -- Quick save
 keymap("n", "<C-s>", "<Esc>:w<CR>", opts)
 
+-- Path related
+keymap("n", "<Space>cd", "<cmd>cd %:p:h<CR>", opts)
+keymap("n", "<Space>cp", '<cmd>let @+ = expand("%")<CR>', opts)
+
 -- use 0 register to overwrite highlighted character
 keymap("n", "<Space>p", 'v"_dP', opts)
 
@@ -60,3 +64,4 @@ keymap("x", "<S-k>", ":move '<-2<CR>gv=gv", opts)
 -- Stay in indent mode
 keymap("x", "<", "<gv", opts)
 keymap("x", ">", ">gv", opts)
+
